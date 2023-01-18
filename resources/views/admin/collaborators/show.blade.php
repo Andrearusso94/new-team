@@ -12,6 +12,10 @@
             @endif
             <h1>{{$collaborator->name}}</h1>
             <p>{{$collaborator->bio}}</p>
+            <div class="category">
+                <strong>Role:</strong>
+                {{ $collaborator->role ? $collaborator->role->name : 'Null'}}
+            </div>
         </div>
     </div>
 </div>

@@ -33,6 +33,21 @@
             @error('bio')
             <div class="alert alert-danger">{{ $message }}</div>
             @enderror
+            <div class="mb-3">
+                <label for="role_id" class="form-label">Roles</label>
+                <select class="form-select form-select-lg @error('role_id') 'is-invalid' @enderror" name="role_id" id="role_id">
+                    <option selected>Select one</option>
+
+                    @foreach ($roles as $role )
+                    <!-- TODO fix old value -->
+                    <option value="{{$role->id}}" {{ $role->id == old('role_id',  $collaborator->role ? $collaborator->role->id : '') ? 'selected' : '' }}>{{$role->name}}</option>
+                    @endforeach
+
+                </select>
+            </div>
+            @error('role')
+            <div class="alert alert-danger">{{ $message }}</div>
+            @enderror
             <button type="submit" class="btn btn-outline-primary my-3"><i class="fas fa-plus    "></i></button>
         </form>
     </div>

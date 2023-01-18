@@ -5,7 +5,7 @@ namespace App\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
-class UpdateCollaboratorRequest extends FormRequest
+class UpdateRoleRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,10 +25,16 @@ class UpdateCollaboratorRequest extends FormRequest
     public function rules()
     {
         return [
-            'image' => ['nullable', 'image', 'max:250'],
-            'name' => ['required', Rule::unique('collaborators')->ignore($this->collaborator->id), 'min:4', 'max:50'],
-            'role_id' => ['nullable', 'exists:roles,id'],
-            'bio' => ['required', 'min:20'],
+            'name' => [
+                'required',
+                Rule::unique('roles')->ignore($this->role->id)
+            ]
+        ];
+    }
+    public function messages()
+    {
+        return [
+            'name.required' => 'Non puoi modificare questo parametro!'
         ];
     }
 }
