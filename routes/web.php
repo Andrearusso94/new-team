@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\Admin\CollaboratorController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\Admin\DashboardController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,6 +22,7 @@ Route::get('/', function () {
 
 Route::middleware(['auth', 'verified'])->name('admin.')->prefix('admin')->group(function () {
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
+    Route::resource('collaborators', CollaboratorController::class)->parameters(['collaborators' => 'collaborator:slug']);
 });
 
 require __DIR__ . '/auth.php';
