@@ -26,7 +26,7 @@
                 <td scope="row">{{$collaborator->id}}</td>
                 <td>
                     @if($collaborator->image)
-                    <img width="140" class="img-fluid" src="{{asset('storage/' . $project->cover_image)}}" alt="">
+                    <img width="140" class="img-fluid" src="{{asset('storage/' . $collaborator->cover_image)}}" alt="">
                     @else
                     <div class="placeholder p-5 bg-dark d-flex align-items-center justify-content-center" style="width:140px">No Image</div>
                     @endif
@@ -36,13 +36,13 @@
                 <td>{{$collaborator->bio}}</td>
 
                 <td class="d-flex flex-column gap-2">
-                    <a href="{{route('admin.collaborators.show', $project->slug)}}" class="btn btn-outline-primary view" role="button">
+                    <a href="{{route('admin.collaborators.show', $collaborator->slug)}}" class="btn btn-outline-primary view" role="button">
                         <i class="fas fa-eye"></i>
                     </a>
-                    <a href="{{route('admin.collaborators.edit', $project->slug)}}" class="btn btn-outline-secondary edit">
+                    <a href="{{route('admin.collaborators.edit', $collaborator->slug)}}" class="btn btn-outline-secondary edit">
                         <i class="fas fa-pencil fa-sm fa-fw"></i>
                     </a>
-                    <a href="" class="btn btn-outline-danger delete" data-bs-toggle="modal" data-bs-target="#deleteProduct-{{$project->id}}">
+                    <a href="" class="btn btn-outline-danger delete" data-bs-toggle="modal" data-bs-target="#deleteProduct-{{$collaborator->id}}">
                         <i class="fas fa-trash fa-sm fa-fw"></i>
                     </a>
 
@@ -52,7 +52,7 @@
             </tr>
             @empty
             <tr class="table-primary">
-                <td scope="row">No projects to show yet</td>
+                <td scope="row">No collaborator to show yet</td>
             </tr>
             @endforelse
         </tbody>
