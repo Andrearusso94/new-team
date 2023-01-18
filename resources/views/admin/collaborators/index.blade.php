@@ -16,6 +16,7 @@
                 <th>Image</th>
                 <th>Name</th>
                 <th>Slug</th>
+                <th>Role</th>
                 <th>Bio</th>
                 <th>Actions</th>
             </tr>
@@ -33,6 +34,7 @@
                 </td>
                 <td>{{$collaborator->name}}</td>
                 <td>{{$collaborator->slug}}</td>
+                <td>{{ $collaborator->role ? $collaborator->role->name : ' No role match'}}</td>
                 <td>{{$collaborator->bio}}</td>
 
                 <td class="d-flex flex-column gap-2">

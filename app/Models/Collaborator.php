@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Str;
 use App\Models\Skill;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
@@ -11,7 +12,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 class Collaborator extends Model
 {
     use HasFactory;
-    protected $fillable = ['name', 'slug', 'image', 'bio'];
+    protected $fillable = ['name', 'slug', 'image', 'bio', 'role_id'];
     public static function generateSlug($name)
     {
         $collaborator_slug = Str::slug($name);
@@ -26,5 +27,10 @@ class Collaborator extends Model
     public function skills(): BelongsToMany
     {
         return $this->belongsToMany(Skill::class);
+    }
+
+    public function Role(): BelongsTo
+    {
+        return $this->belongsTo(Role::class);
     }
 }
