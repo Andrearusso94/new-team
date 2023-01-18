@@ -10,7 +10,7 @@ use Illuminate\Support\Str;
 class Collaborator extends Model
 {
     use HasFactory;
-    protected $fillable = ['name', 'slug', 'image', 'bio' . 'role_id'];
+    protected $fillable = ['name', 'slug', 'image', 'bio', 'role_id'];
     public static function generateSlug($name)
     {
         $collaborator_slug = Str::slug($name);

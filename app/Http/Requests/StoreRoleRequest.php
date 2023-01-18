@@ -3,9 +3,8 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Validation\Rule;
 
-class UpdateCollaboratorRequest extends FormRequest
+class StoreRoleRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,10 +24,15 @@ class UpdateCollaboratorRequest extends FormRequest
     public function rules()
     {
         return [
-            'image' => ['nullable', 'image', 'max:250'],
-            'name' => ['required', Rule::unique('collaborators')->ignore($this->collaborator->id), 'min:4', 'max:50'],
-            'role_id' => ['nullable', 'exists:roles,id'],
-            'bio' => ['required', 'min:20'],
+            'name' => 'required|unique:roles,name|min:5|max:100'
+        ];
+    }
+    public function messages()
+    {
+        return [
+            'name.required' => 'Il nome é obbligatorio',
+            'name.min' => 'Il nome deve avere minimo :min caratteri',
+            'name.max' => 'Il nome deve avere massimo :max caratteri'
         ];
     }
 }

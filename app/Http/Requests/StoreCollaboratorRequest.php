@@ -26,6 +26,7 @@ class StoreCollaboratorRequest extends FormRequest
         return [
             'image' => ['nullable', 'image', 'max:250'],
             'name' => ['required', 'unique:projects', 'min:4', 'max:50'],
+            'role_id' => ['nullable', 'exists:roles,id'],
             'bio' => ['required', 'min:20'],
         ];
     }

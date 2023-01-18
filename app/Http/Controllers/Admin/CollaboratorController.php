@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Collaborator;
+use App\Models\Role;
 use App\Http\Requests\StoreCollaboratorRequest;
 use App\Http\Requests\UpdateCollaboratorRequest;
 use Illuminate\Support\Facades\Validator;
@@ -16,11 +17,11 @@ class CollaboratorController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Role $role)
     {
         $collaborators = Collaborator::orderByDesc('id')->get();
         //dd($collaborators);
-        return view('admin.collaborators.index', compact('collaborators'));
+        return view('admin.collaborators.index', compact('collaborators', 'role'));
     }
 
     /**
@@ -28,9 +29,10 @@ class CollaboratorController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Collaborator $collaborator)
     {
-        return view('admin.collaborators.create');
+        $roles = Role::all();
+        return view('admin.collaborators.create', compact('collaborator', 'roles'));
     }
 
     /**
@@ -75,7 +77,8 @@ class CollaboratorController extends Controller
      */
     public function edit(Collaborator $collaborator)
     {
-        return view('admin.collaborators.edit', compact('collaborator'));
+        $roles = Role::all();
+        return view('admin.collaborators.edit', compact('collaborator', 'roles'));
     }
 
     /**
