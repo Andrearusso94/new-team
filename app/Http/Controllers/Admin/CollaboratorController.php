@@ -122,6 +122,6 @@ class CollaboratorController extends Controller
         }
         $collaborator->delete();
 
-        return to_route('admin.collaborators.index')->with('message', "Collaborator deleted successfully!");
+        return to_route('admin.collaborators.index')->with('message', "Collaborator deleted successfully! fabio");
     }
 }
